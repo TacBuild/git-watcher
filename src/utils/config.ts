@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import { AppConfig } from '../types';
 
-dotenv.config();
+dotenv.config({ path: '.env' });
+dotenv.config({ path: '.env.local', override: true });
 
 class ConfigError extends Error {
   constructor(message: string) {
@@ -11,9 +12,12 @@ class ConfigError extends Error {
 }
 
 function getEnvVar(name: string, defaultValue?: string): string {
-  const value = process.env[name] || defaultValue;
+  const value = process.env[name];
   if (!value) {
-    throw new ConfigError(`Missing required environment variable: ${name}`);
+    if (defaultValue === undefined) {
+      throw new ConfigError(`Missing required environment variable: ${name}`);
+    }
+    return defaultValue;
   }
   return value;
 }
@@ -40,11 +44,11 @@ export function loadConfig(): AppConfig {
       port: getEnvVarAsNumber('PORT', 3000),
       nodeEnv: getEnvVar('NODE_ENV', 'development'),
       telegram: {
-        botToken: '',
-        chatId: '',
+        botToken: getEnvVar('TELEGRAM_BOT_TOKEN', ''),
+        chatId: getEnvVar('TELEGRAM_CHAT_ID', ''),
       },
       github: {
-        webhookSecret: '',
+        webhookSecret: getEnvVar('GITHUB_WEBHOOK_SECRET', ''),
       },
       logging: {
         level: getEnvVar('LOG_LEVEL', 'info'),

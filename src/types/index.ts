@@ -24,4 +24,5 @@ export interface TelegramMessage {
   chatId: string;
   text: string;
   parseMode?: 'HTML' | 'Markdown' | 'MarkdownV2';
+  disableWebPagePreview?: boolean;
 }
