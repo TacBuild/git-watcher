@@ -5,7 +5,10 @@ const prettierConfig = require('eslint-config-prettier');
 
 module.exports = [
   {
-    files: ['src/**/*.ts'],
+    ignores: ['node_modules/**', 'dist/**'],
+  },
+  {
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {

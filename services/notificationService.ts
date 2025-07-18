@@ -1,4 +1,4 @@
-import { GitHubEventParser, ParsedEvent } from './eventParser';
+import { GitHubEventParser, GitHubWebhookPayload, ParsedEvent } from './eventParser';
 import { EventDeduplicationService } from './deduplication';
 import { TelegramClient } from './telegramClient';
 import { TelegramMessageFormatter } from './messageFormatter';
@@ -50,7 +50,11 @@ export class NotificationService {
         return;
       }
 
-      const parsedEvent = this.eventParser.parseEvent(eventType, deliveryId, payload as any);
+      const parsedEvent = this.eventParser.parseEvent(
+        eventType,
+        deliveryId,
+        payload as unknown as GitHubWebhookPayload,
+      );
 
       if (this.deduplicationService.checkAndMarkProcessed(parsedEvent)) {
         logger.info('Duplicate event detected, skipping notification', {

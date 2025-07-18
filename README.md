@@ -145,12 +145,12 @@ _note: the parser also handles pull requests, issues, and ci events, but only pu
 ### project structure
 
 ```
-src/
 ├── controllers/     # http request handlers
 ├── middleware/      # express middleware
 ├── services/        # business logic services
 ├── types/          # typescript type definitions
-└── utils/          # utility functions
+├── utils/          # utility functions
+└── index.ts        # main application entry point
 ```
 
 ## deployment
