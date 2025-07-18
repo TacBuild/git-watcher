@@ -145,7 +145,7 @@ export class NotificationService {
     const logger = getLogger();
 
     try {
-      const message = '🤖 <b>Test Message</b>\\nGit-to-Telegram notifier is working correctly!';
+      const message = '🤖 test message! github to telegram notifier is working correctly!';
 
       await this.telegramClient.sendFormattedMessage(this.config.telegram.chatId, message, 'HTML');
 
