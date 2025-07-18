@@ -1,4 +1,4 @@
-# git-to-telegram notifier
+# github to telegram notifier
 
 a production-ready node.js app that receives github webhook events and sends formatted notifications to a telegram chat
 
