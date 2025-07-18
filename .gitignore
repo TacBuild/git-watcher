@@ -1,0 +1,22 @@
+node_modules
+
+# ai
+.cursor/
+.claude/
+
+# env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# build
+dist/
+build/
+
+# logs
+logs/
+
+# temp
+temp/
